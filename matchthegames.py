@@ -89,7 +89,20 @@ while run:
                     endrect=textrect
                     break
             if clickedonvalidarea and releaseonvalidarea:
-                pygame.draw.circle(screen,"black",startpos,10)
-                pygame.display.update()
+                pygame.draw.circle(screen,"black",endpos,10)
 
+                pygame.display.update()
+            if clickedonvalidarea and releaseonvalidarea:
+                correct=False
+                for imagerect,textrect in rightanswers:
+                    if imagerect==startrect and textrect==endrect :
+                        correct=True
+                        pygame.draw.line(screen,"green",startpos,endpos,3)
+                        pygame.display.update()
+                        break
     
+                if correct==False:
+                    pygame.draw.line(screen,"red",startpos,endpos,3)
+                    pygame.display.update()
+                        
+
