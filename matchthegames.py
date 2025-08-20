@@ -9,6 +9,7 @@ screen= pygame.display.set_mode((WIDTH,HEIGHT))
 screen.fill("light blue")
 
 score=0
+tries=0
 
 
 
@@ -93,11 +94,25 @@ while run:
 
                 pygame.display.update()
             if clickedonvalidarea and releaseonvalidarea:
+
+                tries+=1
+                pygame.draw.rect(screen, "light blue", pygame.Rect(400, 0, 200, 50))
+                triestext = font1.render("tries= " + str(tries), True, "red")
+                screen.blit(triestext, (400, 0))
+                pygame.display.update()
+
                 correct=False
                 for imagerect,textrect in rightanswers:
                     if imagerect==startrect and textrect==endrect :
                         correct=True
                         pygame.draw.line(screen,"green",startpos,endpos,3)
+                        pygame.display.update()
+                    
+                        score += 1
+                        pygame.draw.rect(screen, "light blue", pygame.Rect(0, 0, 200, 50))
+                        scoretext = font1.render("score= " + str(score), True, "black")
+                        screen.blit(scoretext, (0, 0))
+
                         pygame.display.update()
                         break
     
